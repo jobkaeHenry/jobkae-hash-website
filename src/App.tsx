@@ -67,7 +67,7 @@ function App() {
         </form>
         <InputWrapper>
           결과
-          <ResultWrapper onClick={() => copyToClipboard(content)}>
+          <ResultWrapper onClick={() => copyToClipboard(result)}>
             {!isActive ? result : "계산중.."}
           </ResultWrapper>
         </InputWrapper>
