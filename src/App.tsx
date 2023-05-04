@@ -9,12 +9,12 @@ import avatar from "./assets/avatar.jpg";
 function App() {
   const [content, setContent] = useState("");
   const [result, setResult] = useState("");
-  const [isActive, setIsActive] = useState(false);
+  const [isCalculating, setIsCalculating] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const hashed = SHA256(content).toString();
-    setIsActive(true);
+    setIsCalculating(true);
     setResult(hashed);
   };
 
@@ -25,27 +25,29 @@ function App() {
   };
 
   useEffect(() => {
-    if (isActive) {
-      setTimeout(() => setIsActive(false), 700);
+    if (isCalculating) {
+      setTimeout(() => setIsCalculating(false), 700);
     } else return;
-  }, [isActive]);
+  }, [isCalculating]);
 
   return (
     <>
       <Navbar />
       <FormWrapper>
         <AvatarWrapper>
-          <img src={avatar} alt="잡캐헨리"></img>
+          <img src={avatar} alt="잡캐헨리" height="60"></img>
           <span>
             유튜브 콘텐츠 <a href="">'당신의 비밀번호는 안전하십니까?'</a> 에서
             다뤘던 해시함수를 체험해볼 수 있습니다.
           </span>
         </AvatarWrapper>
         <ServerWrapper>
-          <ServerMsg className={isActive ? "active" : ""}>지이잉</ServerMsg>
+          <ServerMsg className={isCalculating ? "active" : ""}>지이잉</ServerMsg>
           <ServerImg
-            className={isActive ? "active" : ""}
+            className={isCalculating ? "active" : ""}
             src={serverImg}
+            width={100}
+            height={100}
             alt="서버"
           />
         </ServerWrapper>
@@ -67,14 +69,17 @@ function App() {
         </form>
         <InputWrapper>
           결과
-          <ResultWrapper onClick={() => copyToClipboard(result)}>
-            {!isActive ? result : "계산중.."}
+          <ResultWrapper onClick={() => result && copyToClipboard(result)}>
+            {!isCalculating ? result : "계산중.."}
           </ResultWrapper>
         </InputWrapper>
         <BradnMsg>
           {result && `즐거우셨다면 구독 부탁드려요!`}
           <br />
-          <a href="https://www.youtube.com/@jobkaeHenry">
+          <a
+            href="https://www.youtube.com/@jobkaeHenry"
+            aria-label="잡캐헨리 유튜브로 이동"
+          >
             {result && "바로가기>"}
           </a>
         </BradnMsg>

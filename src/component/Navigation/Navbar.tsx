@@ -7,8 +7,11 @@ function Navbar() {
     <Header>
       <Wrapper>
         <Logo />
-        <GapWrapper href="https://www.youtube.com/@jobkaeHenry">
-          <img height={"36px"} src={youtubelogo} alt="유튜브 로고" />
+        <GapWrapper
+          href="https://www.youtube.com/@jobkaeHenry"
+          aria-label="잡캐헨리 유튜브로 이동"
+        >
+          <img height={"36px"} width={36} src={youtubelogo} alt="유튜브 로고" />
           <span>잡캐헨리</span>
         </GapWrapper>
       </Wrapper>
