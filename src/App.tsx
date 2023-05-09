@@ -59,7 +59,6 @@ function App() {
               placeholder="해쉬 할 문자를 입력해주세요"
               onChange={(e) => {
                 setContent(e.target.value);
-                console.log(content);
               }}
             />
           </InputWrapper>
